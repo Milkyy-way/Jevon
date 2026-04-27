@@ -1,0 +1,1763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jevon | Initial Setup</title>
+  <style>
+  :root {
+    --navy: #17305b;
+    --blue: #4aa8e8;
+    --light-blue: #eaf5ff;
+    --light-gray: #f4f6f8;
+    --white: #ffffff;
+    --text: #18314f;
+    --muted: #6c7a89;
+    --border: rgba(23, 48, 91, 0.08);
+    --shadow: 0 16px 40px rgba(17, 31, 61, 0.08);
+    --header-height: 92px;
+    --radius: 18px;
+    --container: 1280px;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    background: var(--white);
+    color: var(--text);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img { display: block; max-width: 100%; }
+  a { text-decoration: none; color: inherit; }
+
+  .container {
+    width: 100%;
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  .site-header {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    height: var(--header-height);
+    background: rgba(23, 48, 91, 0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    z-index: 1000;
+    transition: transform 0.5s var(--ease), box-shadow 0.4s var(--ease);
+  }
+  
+  .brand-logos-section {
+  padding: 90px 0;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+}
+
+.brand-logos-header {
+  max-width: 780px;
+  margin: 0 auto 36px;
+  text-align: center;
+}
+
+
+
+.brand-logos-section {
+  padding: 90px 0;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  overflow: hidden;
+}
+
+.brand-logos-header {
+  max-width: 780px;
+  margin: 0 auto 34px;
+  text-align: center;
+}
+
+.brand-logos-track {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.brand-logos-row {
+  display: flex;
+  align-items: center;
+  gap: 54px;
+  width: max-content;
+  animation: brandLogosScroll 34s linear infinite;
+  will-change: transform;
+}
+
+.brand-logos-track:hover .brand-logos-row {
+  animation-play-state: paused;
+}
+
+.brand-logo-item {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 54px;
+  opacity: 0.9;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.brand-logo-item:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.brand-logo-item img {
+  max-height: 48px;
+  width: auto;
+  max-width: 150px;
+  object-fit: contain;
+  display: block;
+  filter: grayscale(0%);
+}
+
+.brand-logo-item img:hover {
+  filter: grayscale(0%);
+}
+
+@keyframes brandLogosScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+  .site-header.scrolled { box-shadow: 0 14px 34px rgba(7, 17, 40, 0.18); }
+
+  .header-inner {
+    max-width: var(--container);
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .brand { display: inline-flex; align-items: center; gap: 14px; }
+  .brand-logo { width: 54px; height: 54px; object-fit: contain; }
+  .brand-text { color: var(--white); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+  .brand-fallback {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.14);
+    color: white;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+  }
+
+  .main-nav {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    margin-left: auto;
+  }
+
+  .main-nav a {
+    color: rgba(255,255,255,0.9);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: opacity 0.25s ease;
+  }
+
+  .main-nav a:hover { opacity: 0.75; }
+
+  .book-btn, .primary-btn, .secondary-btn, .ghost-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), background 0.35s var(--ease);
+  }
+
+  .book-btn {
+    min-width: 148px;
+    height: 50px;
+    background: linear-gradient(135deg, #4aa8e8, #56b5f6);
+    color: var(--white);
+    border: 0;
+    padding: 0 18px;
+  }
+
+  .primary-btn {
+    background: linear-gradient(135deg, #4aa8e8, #56b5f6);
+    color: white;
+    border: none;
+    height: 58px;
+    padding: 0 28px;
+    box-shadow: 0 14px 28px rgba(74, 168, 232, 0.24);
+  }
+
+  .secondary-btn {
+    background: rgba(255,255,255,0.06);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.42);
+    height: 58px;
+    padding: 0 28px;
+    backdrop-filter: blur(8px);
+  }
+
+  .ghost-btn {
+    background: transparent;
+    color: var(--navy);
+    border: 1px solid rgba(23, 48, 91, 0.14);
+    height: 52px;
+    padding: 0 22px;
+  }
+
+  .primary-btn:hover, .secondary-btn:hover, .book-btn:hover, .ghost-btn:hover {
+    transform: translateY(-2px);
+  }
+
+  .hero-spacer {
+    position: relative;
+    height: 80vh;
+    min-height: 700px;
+    overflow: hidden;
+    background: var(--navy);
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: url('https://ik.imagekit.io/sgwx4owvl/Jevon/banner-bg.JPG') center center / cover no-repeat;
+    z-index: 1;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(8,25,54,0.85) 0%, rgba(8,25,54,0.4) 100%);
+    z-index: 2;
+  }
+
+  .hero-inner {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 36px;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .hero-text { color: white; }
+  .hero-title { font-size: clamp(2.2rem, 3.5vw, 4rem); line-height: 1.1; font-weight: 800; margin-bottom: 20px; }
+  .hero-subtitle { font-size: 1.1rem; line-height: 1.6; opacity: 0.9; margin-bottom: 30px; }
+  .hero-buttons { display: flex; gap: 16px; }
+
+  .hero-image {
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+
+  .hero-image img {
+    max-height: 85%;
+    width: auto;
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
+  }
+
+  .section {
+    padding: 110px 0;
+    background: var(--white);
+  }
+
+  .section.alt { background: #fbfcfd; }
+  .section-dark {
+    background: linear-gradient(135deg, #11284e, #17305b);
+    color: white;
+  }
+
+  .programs-offers-section {
+    background: linear-gradient(180deg, #0d2348 0%, #0d2245 100%);
+    color: white;
+  }
+
+  .programs-header-center {
+    max-width: 860px;
+    margin: 0 auto 28px;
+    text-align: center;
+  }
+
+  .programs-title-dark {
+    color: white;
+  }
+
+  .programs-copy-dark {
+    color: rgba(255,255,255,0.82);
+  }
+
+  .programs-logo-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 34px;
+  }
+
+  .programs-center-logo {
+    width: min(180px, 28vw);
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 12px 22px rgba(0,0,0,0.18));
+    opacity: 0.98;
+  }
+
+  .programs-offers-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+    gap: 22px;
+    max-width: 1020px;
+    margin: 0 auto;
+  }
+
+  .program-offer-card {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    min-height: 124px;
+    padding: 26px 28px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 26px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.12);
+  }
+
+  .program-offer-icon {
+    width: 64px;
+    height: 64px;
+    flex: 0 0 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .program-offer-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .program-offer-text h3 {
+    font-size: 1.8rem;
+    line-height: 1.15;
+    color: white;
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+
+  .program-offer-text p {
+    color: rgba(255,255,255,0.82);
+    line-height: 1.6;
+    font-size: 1rem;
+  }
+
+  .section-header {
+    max-width: 760px;
+    margin-bottom: 46px;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 16px;
+  }
+
+  .section-dark .eyebrow { color: #9fd7ff; }
+
+  .section-title {
+    font-size: clamp(2rem, 3.6vw, 3rem);
+    line-height: 1.15;
+    font-weight: 800;
+    margin-bottom: 16px;
+  }
+
+  .section-copy {
+    font-size: 1.04rem;
+    line-height: 1.75;
+    color: var(--muted);
+  }
+
+  .section-dark .section-copy { color: rgba(255,255,255,0.82); }
+
+  .about-grid,
+  .method-grid,
+  .offer-grid,
+  .community-grid,
+  .testimonial-grid,
+  .contact-grid,
+  .footer-grid {
+    display: grid;
+    gap: 24px;
+  }
+
+  .about-grid { grid-template-columns: 1.1fr 0.9fr; align-items: center; }
+  .method-grid { grid-template-columns: repeat(3, 1fr); }
+  .offer-grid { grid-template-columns: repeat(3, 1fr); }
+
+  .video-feature {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 28px;
+    align-items: center;
+  }
+
+  .video-only-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 18px;
+  }
+
+  .video-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    background: #0f2243;
+  }
+
+  .video-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+
+  .video-frame-centered {
+    width: min(920px, 100%);
+    margin: 0 auto;
+  }
+
+  
+  .community-grid { grid-template-columns: 1fr 1fr; align-items: center; }
+  .testimonial-grid {
+    display: flex;
+    width: max-content;
+    gap: 24px;
+    animation: testimonialMarquee 26s linear infinite;
+    will-change: transform;
+  }
+
+  .testimonial-track {
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .testimonial-track:hover .testimonial-grid {
+    animation-play-state: paused;
+  }
+  .contact-grid { grid-template-columns: 1fr 1fr; align-items: start; }
+  .footer-grid { grid-template-columns: 1.2fr 0.8fr 0.8fr; }
+
+  .card,
+  .feature-card,
+  .offer-card,
+  .testimonial-card,
+  .contact-card,
+  .stat-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+  }
+
+  .card,
+  .feature-card,
+  .offer-card,
+  .testimonial-card,
+  .contact-card { padding: 30px; }
+
+  .about-image {
+    min-height: 520px;
+    border-radius: 30px;
+    overflow: hidden;
+    background: url('https://ik.imagekit.io/sgwx4owvl/Jevon/image2.png') center center / cover no-repeat;
+    box-shadow: var(--shadow);
+  }
+
+  .about-points,
+  .community-list,
+  .contact-list,
+  .footer-links,
+  .social-links {
+    list-style: none;
+  }
+
+  .about-points li,
+  .community-list li,
+  .contact-list li,
+  .footer-links li {
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 14px;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  .about-points li::before,
+  .community-list li::before,
+  .contact-list li::before,
+  .footer-links li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--blue);
+  }
+
+  .logo-break-section {
+    padding: 40px 0;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  }
+
+  .logo-break {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px;
+    min-height: 360px;
+    width: 100%;
+    border-radius: 34px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .logo-break-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  .logo-break::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.12);
+    z-index: 2;
+  }
+
+  .logo-break-image {
+    position: relative;
+    z-index: 3;
+    width: min(420px, 58vw);
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 16px 30px rgba(23, 48, 91, 0.12));
+    opacity: 0.96;
+  }
+
+  .feature-card {
+    min-height: 280px;
+  }
+
+  .feature-number {
+    width: 54px;
+    height: 54px;
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--light-blue);
+    color: var(--navy);
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-bottom: 22px;
+  }
+
+  .feature-card h3,
+  .offer-card h3,
+  .testimonial-card h3,
+  .contact-card h3,
+  .footer-title {
+    font-size: 1.25rem;
+    line-height: 1.3;
+    margin-bottom: 14px;
+    font-weight: 800;
+  }
+
+  .feature-card p,
+  .offer-card p,
+  .testimonial-card p,
+  .contact-card p,
+  .footer-copy {
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .offer-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .offer-tag {
+    display: inline-flex;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: var(--light-blue);
+    color: var(--navy);
+    font-size: 0.8rem;
+    font-weight: 800;
+    margin-bottom: 18px;
+  }
+
+  .offer-card ul {
+    list-style: none;
+    margin: 20px 0 28px;
+  }
+
+  .offer-card li {
+    padding: 10px 0;
+    border-top: 1px solid rgba(23,48,91,0.08);
+    color: var(--muted);
+  }
+
+  .community-panel,
+  .cta-panel {
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    min-height: 520px;
+    background: linear-gradient(160deg, #17305b, #0f2243);
+    position: relative;
+    padding: 34px;
+    color: white;
+  }
+
+  .community-panel::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(255,255,255,0.18), transparent 42%);
+    pointer-events: none;
+  }
+
+  .community-mock {
+    position: relative;
+    display: grid;
+    gap: 14px;
+    margin-top: 24px;
+    z-index: 2;
+  }
+
+  .mock-card {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 18px;
+    padding: 18px;
+    backdrop-filter: blur(6px);
+  }
+
+  @keyframes testimonialMarquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .testimonial-card {
+    min-height: 250px;
+    width: 380px;
+    flex: 0 0 380px;
+  }
+
+  .testimonial-role {
+    display: block;
+    margin-top: 12px;
+    color: var(--blue);
+    font-weight: 700;
+    font-size: 0.92rem;
+  }
+
+  .cta-band {
+    margin-top: 38px;
+    padding: 30px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, #eaf5ff, #f7fbff);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    border: 1px solid rgba(23,48,91,0.08);
+  }
+
+  .contact-form {
+    display: grid;
+    gap: 14px;
+    margin-top: 22px;
+  }
+
+  .contact-form input,
+  .contact-form textarea,
+  .contact-form select {
+    width: 100%;
+    border: 1px solid rgba(23,48,91,0.12);
+    border-radius: 14px;
+    padding: 16px 18px;
+    font: inherit;
+    color: var(--text);
+    background: white;
+  }
+
+  .contact-form textarea {
+    min-height: 160px;
+    resize: vertical;
+  }
+  .video-frame video {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  object-fit: cover;
+}
+
+  .contact-form button {
+    width: fit-content;
+    border: 0;
+  }
+
+  .email-capture {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+
+  .email-capture input {
+    flex: 1 1 260px;
+    height: 54px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(255,255,255,0.1);
+    color: white;
+    padding: 0 16px;
+  }
+
+  .email-capture input::placeholder { color: rgba(255,255,255,0.72); }
+
+  .site-footer {
+    padding: 80px 0 30px;
+    background: #0f2243;
+    color: white;
+  }
+
+  .footer-copy,
+  .footer-links li,
+  .footer-bottom {
+    color: rgba(255,255,255,0.74);
+  }
+
+  .footer-links a,
+  .social-links a {
+    color: rgba(255,255,255,0.84);
+  }
+
+  .social-links {
+    display: flex;
+    gap: 12px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+
+  .social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 110px;
+    height: 42px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .footer-bottom {
+    margin-top: 34px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .scroll-progress {
+    position: fixed;
+    top: 0; left: 0; height: 3px; width: 0%;
+    background: var(--blue);
+    z-index: 1200;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s var(--ease);
+  }
+
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  .back-to-top {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 0;
+    background: linear-gradient(135deg, #4aa8e8, #56b5f6);
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 800;
+    box-shadow: 0 16px 34px rgba(17,31,61,0.2);
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.35s ease;
+    z-index: 999;
+  }
+
+  .back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+.photo-marquee-section {
+  padding-top: 18px;
+}
+
+.photo-carousel-section {
+  padding: 24px 0 0;
+}
+
+.photo-carousel-wrap {
+  position: relative;
+}
+
+.photo-carousel-track {
+  display: flex;
+  gap: 26px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 8px 56px 12px;
+  scrollbar-width: none;
+}
+
+.photo-carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.photo-carousel-item {
+  flex: 0 0 420px;
+  height: 280px;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: #dfe8f2;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.photo-carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.45s ease;
+}
+
+.photo-carousel-item:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 20px 46px rgba(17, 31, 61, 0.18);
+}
+
+.photo-carousel-item:hover img {
+  transform: scale(1.06);
+}
+
+.photo-carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(23, 48, 91, 0.92);
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 800;
+  cursor: pointer;
+  z-index: 5;
+  box-shadow: 0 14px 30px rgba(17, 31, 61, 0.16);
+}
+
+.photo-carousel-arrow.left {
+  left: 0;
+}
+
+.photo-carousel-arrow.right {
+  right: 0;
+}
+
+.photo-carousel-arrow:hover {
+  background: var(--blue);
+}
+
+@media (max-width: 1024px) {
+  .photo-carousel-item {
+    flex-basis: 340px;
+    height: 240px;
+  }
+}
+
+@media (max-width: 768px) {
+  .photo-carousel-track {
+    padding: 8px 44px 10px;
+    gap: 18px;
+  }
+
+  .photo-carousel-item {
+    flex-basis: 270px;
+    height: 190px;
+    border-radius: 22px;
+  }
+
+  .photo-carousel-arrow {
+    width: 42px;
+    height: 42px;
+    font-size: 1.2rem;
+  }
+}
+
+.photo-marquee-track:hover .photo-marquee-row {
+  animation-play-state: paused;
+}
+
+.photo-marquee-item {
+  flex: 0 0 auto;
+  width: 320px;
+  height: 220px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: #dfe8f2;
+}
+
+.photo-marquee-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.community-join-section {
+  background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+}
+
+.community-join-shell {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 32px;
+  align-items: center;
+  padding: 54px;
+  border-radius: 32px;
+  background: linear-gradient(135deg, #11284e, #17305b);
+  box-shadow: 0 20px 44px rgba(17, 31, 61, 0.14);
+  overflow: hidden;
+  position: relative;
+}
+
+.community-join-shell::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(255,255,255,0.16), transparent 38%);
+  pointer-events: none;
+}
+
+.community-join-content,
+.community-join-visual {
+  position: relative;
+  z-index: 2;
+}
+
+.community-join-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 20px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.14);
+  color: white;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.community-join-title {
+  font-size: clamp(2.2rem, 4.8vw, 4rem);
+  line-height: 1.02;
+  color: white;
+  font-weight: 900;
+  margin-bottom: 18px;
+  letter-spacing: -0.03em;
+}
+
+.community-join-copy {
+  font-size: 1.04rem;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.82);
+  max-width: 620px;
+  margin-bottom: 28px;
+}
+
+.community-join-points {
+  list-style: none;
+  display: grid;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.community-join-points li {
+  position: relative;
+  padding-left: 18px;
+  color: rgba(255,255,255,0.88);
+  line-height: 1.6;
+}
+
+.community-join-points li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #56b5f6;
+}
+
+.community-join-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.community-join-actions .ghost-btn {
+  color: white;
+  border-color: rgba(255,255,255,0.32);
+}
+
+.community-join-visual {
+  display: grid;
+  gap: 14px;
+}
+
+.community-app-card {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 22px;
+  padding: 22px;
+  backdrop-filter: blur(6px);
+}
+
+.community-app-card h3 {
+  color: white;
+  font-size: 1.15rem;
+  margin-bottom: 8px;
+  font-weight: 800;
+}
+
+.community-app-card p {
+  color: rgba(255,255,255,0.8);
+  line-height: 1.7;
+}
+
+.community-app-card.featured {
+  min-height: 180px;
+}
+
+.community-popout-section {
+  padding: 110px 0;
+  background: linear-gradient(180deg, #0d2348 0 38%, #ffffff 38% 100%);
+}
+
+.community-popout-shell {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: 28px;
+  background: #f4f6f8;
+  border: 1px solid rgba(23,48,91,0.08);
+  border-radius: 34px;
+  box-shadow: 0 20px 44px rgba(17,31,61,0.12);
+  padding: 70px 56px;
+  overflow: visible;
+}
+
+.community-popout-content {
+  max-width: 620px;
+  position: relative;
+  z-index: 2;
+}
+
+.community-popout-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0 22px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #4aa8e8, #56b5f6);
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+}
+
+.community-popout-title {
+  font-size: clamp(2.5rem, 5vw, 4.6rem);
+  line-height: 0.98;
+  font-weight: 900;
+  color: #111111;
+  margin-bottom: 18px;
+  letter-spacing: -0.03em;
+}
+
+.community-popout-title .accent {
+  color: #4aa8e8;
+}
+
+.community-popout-copy {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--muted);
+  margin-bottom: 28px;
+  max-width: 590px;
+}
+
+.community-popout-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.community-popout-actions .primary-btn,
+.community-popout-actions .ghost-btn {
+  min-width: 190px;
+}
+
+.community-popout-image-wrap {
+  position: relative;
+  min-height: 620px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.community-popout-image {
+  position: absolute;
+  right: 0;
+  bottom: -54px;
+  width: min(560px, 100%);
+  max-width: none;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 24px 36px rgba(0,0,0,0.14));
+}
+
+@media (max-width: 1024px) {
+  .community-popout-shell {
+    grid-template-columns: 1fr;
+    padding: 44px 32px 24px;
+  }
+
+  .community-popout-image-wrap {
+    min-height: 420px;
+  }
+
+  .community-popout-image {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: min(420px, 100%);
+  }
+}
+
+@media (max-width: 768px) {
+  .community-popout-section {
+    padding: 90px 0 60px;
+  }
+
+  .community-popout-shell {
+    padding: 34px 22px 18px;
+    border-radius: 26px;
+  }
+
+  .community-popout-title {
+    font-size: 2.7rem;
+    line-height: 1;
+  }
+
+  .community-popout-copy {
+    font-size: 0.98rem;
+    line-height: 1.7;
+  }
+
+  .community-popout-actions .primary-btn,
+  .community-popout-actions .ghost-btn {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .community-popout-image-wrap {
+    min-height: 300px;
+  }
+
+  .community-popout-image {
+    width: min(320px, 100%);
+  }
+}
+
+@media (max-width: 1024px) {
+  .community-join-shell {
+    grid-template-columns: 1fr;
+    padding: 38px 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  .community-join-shell {
+    padding: 28px 20px;
+    border-radius: 24px;
+  }
+
+  .community-join-title {
+    font-size: 2.4rem;
+  }
+
+  .community-join-actions .primary-btn,
+  .community-join-actions .ghost-btn {
+    width: 100%;
+  }
+}
+
+
+
+
+
+
+  @media (max-width: 1180px) {
+    .main-nav { display: none; }
+    .programs-offers-grid {
+      grid-template-columns: 1fr;
+      max-width: 760px;
+    }
+    .about-grid,
+    .community-grid,
+    .contact-grid,
+    .footer-grid,
+    .method-grid,
+    .offer-grid,
+    .video-feature,
+    .testimonial-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .video-frame-centered {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .hero-inner { grid-template-columns: 1fr; text-align: center; padding-top: 60px; }
+    .hero-text { margin: 0 auto; }
+    .hero-buttons { justify-content: center; flex-wrap: wrap; }
+    .hero-image { justify-content: center; }
+    .hero-image img { max-height: 350px; }
+    .cta-band { flex-direction: column; align-items: flex-start; }
+  }
+@media (max-width: 1024px) {
+  .brand-logos-grid {
+    grid-template-columns: repeat(3, minmax(140px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .brand-logos-grid {
+    grid-template-columns: repeat(2, minmax(120px, 1fr));
+    gap: 16px;
+  }
+
+  .brand-logo-card {
+    min-height: 90px;
+    padding: 14px;
+  }
+
+  .brand-logo-card img {
+    max-height: 52px;
+  }
+}
+  @media (max-width: 768px) {
+    .program-offer-card {
+      padding: 22px 20px;
+      border-radius: 22px;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .program-offer-icon {
+      width: 52px;
+      height: 52px;
+      flex-basis: 52px;
+    }
+
+    .program-offer-text h3 {
+      font-size: 1.3rem;
+    }
+
+    .programs-center-logo {
+      width: min(140px, 36vw);
+    }
+
+    :root { --header-height: 80px; }
+    .hero-title { font-size: 2.2rem; }
+    .primary-btn, .secondary-btn { min-width: 140px; font-size: 0.9rem; }
+    .header-inner { padding: 0 18px; }
+    .container { padding: 0 18px; }
+    .section { padding: 84px 0; }
+    .logo-break {
+      min-height: 240px;
+      padding: 28px 16px;
+      border-radius: 24px;
+    }
+    .logo-break-bg {
+      object-position: center;
+    }
+    .about-image,
+    .community-panel,
+    .cta-panel { min-height: auto; }
+  }
+</style>
+</head>
+<body>
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a href="#top" class="brand" aria-label="Jevon home">
+        <img
+          class="brand-logo"
+          src="https://ik.imagekit.io/sgwx4owvl/Jevon/logo.PNG"
+          alt="Jevon logo"
+          onerror="this.style.display='none'; document.getElementById('brandFallback').style.display='flex';"
+        />
+        <div class="brand-fallback" id="brandFallback">J</div>
+        <div class="brand-text">RAISE THE VIBES</div>
+      </a>
+
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#work-with-me">Work With Me</a>
+        <a href="#programs">Services</a>
+        <a href="#community" class="ghost-btn">Join the Community</a>
+
+  
+      </nav>
+
+      <a class="book-btn" href="https://calendly.com/coach-raisethevibesllc/intro_meeting" target="_blank" rel="noopener noreferrer">BOOK JEVON</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero-spacer hero-section">
+      <div class="hero-bg"></div>
+      <div class="hero-overlay"></div>
+
+      <div class="hero-inner">
+        <div class="hero-text">
+          <h2 class="hero-title">
+            Helping Former Athletes & Young Adults Reclaim Their Identity Purpose & Direction
+          </h2>
+          <p class="hero-subtitle">
+            I help you move from confusion and pressure to clarity, purpose, and aligned action through the IDD Method (Identify, Define, Design). 
+          </p>
+
+          <div class="hero-buttons">
+            <a class="primary-btn" href="https://calendly.com/coach-raisethevibesllc/intro_meeting" target="_blank" rel="noopener noreferrer">BOOK NOW</a>
+			<a class="secondary-btn" href="https://calendly.com/coach-raisethevibesllc/intro_meeting" target="_blank" rel="noopener noreferrer">LEARN MORE</a>
+          </div>
+        </div>
+
+        <div class="hero-image">
+          <img src="https://ik.imagekit.io/sgwx4owvl/Jevon/image1.PNG" alt="Speaker" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="about">
+      <div class="container">
+        <div class="about-grid reveal">
+          <div>
+            <div class="section-header">
+              <span class="eyebrow">About Jevon Brown-Simpson</span>
+              <h2 class="section-title">This is more than motivation. It is identity work with direction.</h2>
+              <p class="section-copy">
+                Jevon helps former athletes and young adults to navigate the space between who they were and who they are becoming. Through transformational coaching, speaking, and structured frameworks, he helps people rebuild confidence, clarify purpose, and move forward with aligned action.
+              </p>
+            </div>
+
+            <ul class="about-points">
+              <li>Built for people facing pressure, transition, uncertainty, or loss of identity after performance-driven seasons of life.</li>
+              <li>Combines lived experience, mindset coaching, and practical tools that move people from internal conflict to forward momentum.</li>
+              <li>Designed for schools, organizations, teams, and individuals who want lasting transformation, not temporary inspiration.</li>
+            </ul>
+          </div>
+
+          <div class="about-image" aria-label="Jevon coaching or speaking visual"></div>
+        </div>
+      </div>
+    </section>
+
+    
+
+<section class="section brand-logos-section" id="brand-logos">
+  <div class="container">
+    <div class="section-header reveal brand-logos-header">
+      <span class="eyebrow">Featured In</span>
+    </div>
+
+    <div class="brand-logos-track reveal">
+      <div class="brand-logos-row">
+        <div class="brand-logo-item"><img src="https://ik.imagekit.io/sgwx4owvl/Jevon/1.png" alt="Associated Press" /></div>
+        <div class="brand-logo-item"><img src="https://ik.imagekit.io/sgwx4owvl/Jevon/2.png" alt="Daily Sentinel" /></div>
+        <div class="brand-logo-item"><img src="https://ik.imagekit.io/sgwx4owvl/Jevon/3.png" alt="Fox 8" /></div>
+        <div class="brand-logo-item"><img src="https://ik.imagekit.io/sgwx4owvl/Jevon/4.webp" alt="Fox 31 Denver" /></div>
+        <div class="brand-logo-item"><img src="https://ik.imagekit.io/sgwx4owvl/Jevon/5.png" alt="KTLA" /></div>
+        <div class="brand-logo-item"><img src="https://ik.imagekit.io/sgwx4owvl/Jevon/6.webp" alt="KXAN" /></div>
+        <div class="brand-logo-item"><img src="https://ik.imagekit.io/sgwx4owvl/Jevon/7.webp" alt="Morningstar" /></div>
+        <div class="brand-logo-item"><img src="https://ik.imagekit.io/sgwx4owvl/Jevon/8.png" alt="Olean Times" /></div>
+        <div class="brand-logo-item"><img src="https://ik.imagekit.io/sgwx4owvl/Jevon/9.png" alt="PR Newswire" /></div>
+        <div class="brand-logo-item"><img src="https://ik.imagekit.io/sgwx4owvl/Jevon/10.png" alt="Seeking Alpha" /></div>
+        <div class="brand-logo-item"><img src="https://ik.imagekit.io/sgwx4owvl/Jevon/11.webp" alt="USA News" /></div>
+
+        <!-- duplicate same set for smooth loop -->
+        <div class="brand-logo-item"><img src="https://ik.imagekit.io/sgwx4owvl/Jevon/12.png" alt="Associated Press" /></div>
+        <div class="brand-logo-item"><img src="https://ik.imagekit.io/sgwx4owvl/Jevon/13.png" alt="Daily Sentinel" /></div>
+        <div class="brand-logo-item"><img src="https://ik.imagekit.io/sgwx4owvl/Jevon/14.webp" alt="Fox 8" /></div>
+        <div class="brand-logo-item"><img src="https://ik.imagekit.io/sgwx4owvl/Jevon/15.png" alt="Fox 31 Denver" /></div>
+        <div class="brand-logo-item"><img src="https://ik.imagekit.io/sgwx4owvl/Jevon/16.png" alt="KTLA" /></div>
+        <div class="brand-logo-item"><img src="https://ik.imagekit.io/sgwx4owvl/Jevon/17.png" alt="KXAN" /></div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+    <section class="section alt" id="work-with-me">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="eyebrow">Work With Me</span>
+          <h2 class="section-title">JEVON BROWN-SIMPSON MOTIVATIONAL STORY.</h2>
+          <p class="section-copy">
+				Watch Jevon share the moment he decided to dedicate his life to Athletes. Hear how his journey lead him to impactful life.
+			</p>
+        </div>
+
+        <div class="video-only-wrap reveal">
+		  <div class="video-frame video-frame-centered">
+			<video controls playsinline preload="metadata">
+			  <source src="https://ik.imagekit.io/sgwx4owvl/Jevon/Video.mov" type="video/mp4" />
+			  Your browser does not support the video tag.
+			</video>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+    <section class="section programs-offers-section" id="programs">
+      <div class="container programs-offers-container">
+        <div class="section-header reveal programs-header-center">
+          <span class="eyebrow">SERVICES</span>
+          <h2 class="section-title programs-title-dark">WHAT Jevon Brown-Simpson OFFERS.</h2>
+          <p class="section-copy programs-copy-dark">
+            These programs are designed to help people move beyond surface-level inspiration into real identity reconstruction, intentional growth, and sustainable action.
+          </p>
+        </div>
+
+        
+        
+
+        <div class="programs-offers-grid reveal">
+          <article class="program-offer-card">
+            <div class="program-offer-icon">
+              <img src="https://ik.imagekit.io/sgwx4owvl/Jevon/logo.PNG" alt="Jevon logo mark" />
+            </div>
+            <div class="program-offer-text">
+              <h3>Start Your Transformation</h3>
+              <p>A guided experience that helps participants work through the IDD Method with support, reflection, and implementation.</p>
+            </div>
+          </article>
+
+          <article class="program-offer-card">
+            <div class="program-offer-icon">
+              <img src="https://ik.imagekit.io/sgwx4owvl/Jevon/logo.PNG" alt="Jevon logo mark" />
+            </div>
+            <div class="program-offer-text">
+              <h3>Community-Based Growth</h3>
+              <p>Designed for people who want to grow in a private environment with access to support, shared momentum, and exclusive content.</p>
+            </div>
+          </article>
+
+          <article class="program-offer-card">
+            <div class="program-offer-icon">
+              <img src="https://ik.imagekit.io/sgwx4owvl/Jevon/logo.PNG" alt="Jevon logo mark" />
+            </div>
+            <div class="program-offer-text">
+              <h3>Bring It To Your Team</h3>
+              <p>Custom coaching intensives or learning experiences for schools, athletic departments, leadership groups, and organizations.</p>
+            </div>
+          </article>
+		  <article class="program-offer-card">
+            <div class="program-offer-icon">
+              <img src="https://ik.imagekit.io/sgwx4owvl/Jevon/logo.PNG" alt="Jevon logo mark" />
+            </div>
+            <div class="program-offer-text">
+              <h3>Community-Based Growth</h3>
+              <p>Designed for people who want to grow in a private environment with access to support, shared momentum, and exclusive content.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+
+<section class="section community-popout-section" id="community">
+  <div class="container">
+    <div class="community-popout-shell reveal">
+      <div class="community-popout-content">
+        <span class="community-popout-pill">Join the Community</span>
+
+        <h2 class="community-popout-title">
+          GO BEYOND<br />
+          <span class="accent">MOTIVATION.</span>
+        </h2>
+
+        <p class="community-popout-copy">
+          Explore the Raise the Vibes experience through courses, sessions,
+          membership, and 1:1 support. Choose the path that fits where you are
+          right now and take the next step with clarity and action.
+        </p>
+
+        <div class="community-popout-actions">
+          <a href="https://www.raisethevibesllc.com/courses" target="_blank" rel="noopener noreferrer" class="primary-btn">Courses</a>
+          <a href="https://www.raisethevibesllc.com/sessions" target="_blank" rel="noopener noreferrer" class="ghost-btn">Sessions</a>
+          <a href="https://www.raisethevibesllc.com/membership" target="_blank" rel="noopener noreferrer" class="ghost-btn">Membership</a>
+          <a href="https://calendly.com/coach-raisethevibesllc/intro_meeting" target="_blank" rel="noopener noreferrer" class="primary-btn">1:1 Booking</a>
+        </div>
+      </div>
+
+      <div class="community-popout-image-wrap">
+        <img src="https://ik.imagekit.io/sgwx4owvl/Jevon/photo1.jpg" alt="Jevon community promo image" class="community-popout-image" />
+      </div>
+    </div>
+  </div>
+</section>
+    
+
+    
+<section class="photo-carousel-section reveal">
+  <div class="photo-carousel-wrap">
+    <button class="photo-carousel-arrow left" type="button" id="photoPrev" aria-label="Previous images">‹</button>
+
+    <div class="photo-carousel-track" id="photoCarousel">
+      <div class="photo-carousel-item">
+        <img src="https://ik.imagekit.io/sgwx4owvl/Jevon/IMG_8654.jpeg" alt="Jevon speaking photo 1" />
+      </div>
+      <div class="photo-carousel-item">
+        <img src="https://ik.imagekit.io/sgwx4owvl/Jevon/photo2.JPG" alt="Jevon speaking photo 2" />
+      </div>
+      
+      <div class="photo-carousel-item">
+        <img src="https://ik.imagekit.io/sgwx4owvl/Jevon/IMG_3960.jpeg" alt="Jevon speaking photo 4" />
+      </div>
+      <div class="photo-carousel-item">
+        <img src="https://ik.imagekit.io/sgwx4owvl/Jevon/photo5.JPEG" alt="Jevon speaking photo 5" />
+      </div>
+      <div class="photo-carousel-item">
+        <img src="https://ik.imagekit.io/sgwx4owvl/Jevon/photo6.JPEG" alt="Jevon speaking photo 6" />
+      </div>
+    </div>
+
+    <button class="photo-carousel-arrow right" type="button" id="photoNext" aria-label="Next images">›</button>
+  </div>
+</section>
+   
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-title">Jevon Brown-Simpson</div>
+          <p class="footer-copy">
+            Helping former athletes and young adults reclaim identity, purpose, and direction through speaking, coaching, workshops, and the IDD Method.
+          </p>
+          <div class="social-links">
+            <a href="https://www.instagram.com/raisethevibes_?utm_source=qr">Instagram</a>
+            <a href="https://www.linkedin.com/in/jevon-brown-simpson-b8704b11b/">LinkedIn</a>
+            <a href="https://www.youtube.com/@RaiseTheVibes/shorts">YouTube</a>
+            
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-title">Explore</div>
+          <ul class="footer-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#work-with-me">Work With Me</a></li>
+            <li><a href="#programs">Programs</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-title">Connect</div>
+          <ul class="footer-links">
+            
+            <li><a href="https://calendly.com/coach-raisethevibesllc/intro_meeting" target="_blank" rel="noopener noreferrer">Schedule a Call</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Jevon. All rights reserved.</span>
+        <span>Built to inspire action, clarity, and transformation.</span>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+
+
+
+
+  <script>
+  const photoCarousel = document.getElementById('photoCarousel');
+const photoPrev = document.getElementById('photoPrev');
+const photoNext = document.getElementById('photoNext');
+
+if (photoCarousel && photoPrev && photoNext) {
+  const scrollAmount = 460;
+
+  photoPrev.addEventListener('click', () => {
+    photoCarousel.scrollBy({
+      left: -scrollAmount,
+      behavior: 'smooth'
+    });
+  });
+
+  photoNext.addEventListener('click', () => {
+    photoCarousel.scrollBy({
+      left: scrollAmount,
+      behavior: 'smooth'
+    });
+  });
+}
+    const header = document.getElementById('siteHeader');
+    const progress = document.getElementById('scrollProgress');
+    const reveals = document.querySelectorAll('.reveal');
+    const backToTop = document.getElementById('backToTop');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.18
+    });
+
+    reveals.forEach((item) => observer.observe(item));
+
+    function updateScrollEffects() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progressWidth = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+      progress.style.width = `${progressWidth}%`;
+
+      if (scrollTop > 10) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+
+      if (scrollTop > 420) {
+        backToTop.classList.add('show');
+      } else {
+        backToTop.classList.remove('show');
+      }
+    }
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    updateScrollEffects();
+    window.addEventListener('scroll', updateScrollEffects, { passive: true });
+    window.addEventListener('resize', updateScrollEffects);
+  </script>
+</body>
+</html>
