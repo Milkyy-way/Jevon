@@ -420,17 +420,16 @@
           <aside class="form-card" aria-label="Lead form">
             <div id="formWrap">
               <h2>Let’s Connect</h2>
-              <p class="form-intro">Share your details and what brought you here. We’ll send you the next step and an invitation to schedule a discovery call.</p>
+              <p class="form-intro">Share your details and what brought you here. We’ll follow up with you, and you can schedule a discovery call after submitting.</p>
 
               <!--
-                IMPORTANT:
-                Replace YOUR_MAKE_WEBHOOK_URL_HERE with the Custom Webhook URL from Make.
+                Form submissions are sent to the Google Apps Script Web App URL below.
                 The hidden iframe prevents the visitor from being taken away from this page.
               -->
               <form
                 id="leadForm"
                 method="POST"
-                action="YOUR_MAKE_WEBHOOK_URL_HERE"
+                action="https://script.google.com/macros/s/AKfycbyIQ9UY2NWZmWe3o4YsLKpu_teNv10sMSwBsY2d_czcwr2re3dwV15fKGOar0qktpS0/exec"
                 target="submissionFrame"
               >
                 <div class="grid-2">
@@ -473,9 +472,9 @@
                 <label class="consent">
                   <input type="checkbox" name="email_consent" value="yes" required />
                   <span>
-                    I agree to receive email updates from Raise the Vibes about services, resources,
-                    and opportunities. I can unsubscribe at any time.
-                    <a href="YOUR_PRIVACY_POLICY_URL" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+                    I agree to be contacted by Raise the Vibes about my inquiry, services, resources,
+                    and opportunities. I can opt out at any time.
+                    <a href="/privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
                   </span>
                 </label>
 
@@ -492,7 +491,7 @@
                 <input type="hidden" name="lead_source" value="Paid Social Landing Page" />
 
                 <button class="submit-btn" id="submitBtn" type="submit">GET STARTED</button>
-                <div class="microcopy">Your information is used to respond to your inquiry and send the emails you requested.</div>
+                <div class="microcopy">Your information is used to respond to your inquiry and follow up about Raise the Vibes services and opportunities.</div>
               </form>
 
               <iframe name="submissionFrame" id="submissionFrame" hidden title="Form submission"></iframe>
@@ -501,7 +500,7 @@
             <div class="success" id="successState" aria-live="polite">
               <div class="success-icon">✓</div>
               <h3>You’re in.</h3>
-              <p>Thanks for connecting with Raise the Vibes. Check your inbox for the next step, or go ahead and book your discovery call now.</p>
+              <p>Thanks for connecting with Raise the Vibes. Your information has been received. You can book your discovery call now, and we’ll follow up with you directly.</p>
               <a
                 class="calendar-btn"
                 href="https://calendly.com/coach-raisethevibesllc/intro_meeting"
@@ -543,24 +542,22 @@
     document.getElementById('page_url').value = window.location.href;
 
     leadForm.addEventListener('submit', (event) => {
-      const action = leadForm.getAttribute('action') || '';
-
-      if (action.includes('YOUR_MAKE_WEBHOOK_URL_HERE')) {
-        event.preventDefault();
-        alert('Paste your Make Custom Webhook URL into the form action first.');
-        return;
-      }
-
-      document.getElementById('submitted_at').value = new Date().toISOString();
+document.getElementById('submitted_at').value = new Date().toISOString();
       submitBtn.disabled = true;
       submitBtn.textContent = 'SUBMITTING...';
 
-      // Traditional POST goes to the hidden iframe, avoiding browser CORS issues.
-      window.setTimeout(() => {
+      // The POST is sent to the hidden iframe so the visitor stays on this page.
+      // Success UI is shown when the Apps Script response finishes loading.
+      const submissionFrame = document.getElementById('submissionFrame');
+
+      const handleSubmissionComplete = () => {
         formWrap.style.display = 'none';
         successState.classList.add('show');
         successState.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }, 900);
+        submissionFrame.removeEventListener('load', handleSubmissionComplete);
+      };
+
+      submissionFrame.addEventListener('load', handleSubmissionComplete);
     });
   </script>
 </body>
